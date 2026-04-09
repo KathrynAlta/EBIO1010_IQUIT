@@ -28,7 +28,7 @@ proptestresults <- prop.test(yesVoted, n, natprop, "greater")
 print(proptestresults)
 summary(proptestresults)
 
-############## visualize with a barplot ###################
+############## visualize with a ba rplot ###################
 
 # store the proportion of yes voters
 clasprop <- proptestresults$estimate

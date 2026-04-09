@@ -51,11 +51,14 @@ obs_exp_combined <- rbind(hist_summary$counts, exp_females)
   # we don't want X sum all here becuase we want the count of the observed number for each number of female offspring 
 
 #then making a barplot. The "\n" notation in the names argument adds a line break, so "females" is below the number.
-barplot(obs_exp_combined, beside=T, names=c("0\nfemales","1\nfemale", "2\nfemales","3\nfemales", "4\nfemales"), xlab="# of females in a family with four offspring", ylab="Number of families", las=1, col=c("black","light grey"))
+barplot(obs_exp_combined, beside=T, names=c("0\nfemales","1\nfemale", "2\nfemales","3\nfemales", "4\nfemales"), xlab="# of females in a family with four offspring", ylab="Number of families", las=1, col=c("forestgreen","light blue"))
 
 
 #put a legend on the graph
 legend("topright", fill=c("black","light grey"), legend=c("observed","expected"))
+text(3,14, paste("X^2=", round(chires$statistic, 2)), cex = 0.9)
+text(3,12, paste("p-value=", round(chires$p.value, 2)), cex = 0.9)
+
 
 #use the function chisq.test to evaluate whether the observed data differs from the expectations. To use this function, we need to put the
 #  observed and expected data into a table with observation in one column, and expected values in another column. We use cbind() and 
@@ -70,6 +73,6 @@ dimnames(obs_vs_exp) <- list(ratio = c("All male","3 male, 1 female","2 males an
 print(obs_vs_exp)
 
 #now to the chisq.test
-chisq.test(obs_vs_exp)
+chires <- chisq.test(obs_vs_exp)
 
 # Use the evidence in your graph, and the results of the chi-square test to make a claim about differences between the observed and expected values. What to submit: image of your graph, claim, and code with thorough and original annotations (this means you need to go back through the code and write your own annotations, to demonstrate that you understand what is happening at each step). 
