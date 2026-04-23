@@ -15,11 +15,12 @@
   
   
 # import all of the data
-seals <- read.csv("Elephant_seals_data.csv")
-algae <- read.csv("algal_blooms.csv")
+seals <- read.csv("data/Elephant_seals_data.csv")
+algae <- read.csv("data/algal_blooms.csv")
 
 ##################### 1 - t test ####################
-# Does the length of foraging trips (short vs. long; ~73 days vs. ~223 days respectively) influence blood mercury content? Data columns = Trip and BloodHg_ug_g_ww
+# Does the length of foraging trips (short vs. long; ~73 days vs. ~223 days respectively) influence blood
+#  mercury content? Data columns = Trip and BloodHg_ug_g_ww
 x <- seals$Trip
 y <- seals$BloodHg_ug_g_ww
 
@@ -27,10 +28,11 @@ ttestres <- t.test(y~x)
 ttestres
 
 plot(c(0.4286957 - 0.3455484), 1, pch = 19, xlab = "Difference in mean blood Hg", ylab = NA, yaxt = "n", xlim = c(-.01, .14))
-abline(v = 0, lty = 2)
-segments(0.12849230, 1, 0.03780223, 1)
-text(.08, 1.1, "Short trips > Long trips")
-text(.12, 1.3, "p-value = 0.0004814 \n t = -3.6541")
+    # make a plot and show the difference in means (you could also calculate the diff in means outside )
+abline(v = 0, lty = 2) # add a vertical line at zero to show the null hypothesis 
+segments(0.12849230, 1, 0.03780223, 1) # add a line segment, give the starting coordinates and the ending coordinates 
+text(.08, 1.1, "Short trips > Long trips") # add text to the plot showing that on this side of zero the Hg in short trips is greater than the Hg in long trips group 
+text(.12, 1.3, "p-value = 0.0004814 \n t = -3.6541") # add p-value and t statistic to the graph 
 
 ###################### 2 - ANOVA ####################
 # There are three different foraging clusters: northerly, shallower offshore, and deeper offshore. Is there a difference in blood mercury content between any of the three clusters? Data columns = Cluster_name and BloodHg_ug_g_ww
